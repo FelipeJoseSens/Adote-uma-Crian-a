@@ -14,6 +14,7 @@ return new class extends Migration
        Schema::create('criancas', function (Blueprint $table) {
     $table->id();
     $table->string('nome');
+    $table->integer('idade')->nullable();
     $table->text('descricao');
     $table->string('foto')->nullable();
     $table->string('presente_desejado');
