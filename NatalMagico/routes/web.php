@@ -8,4 +8,4 @@ Route::get('/', function () {
 });
 
 Route::get('/conheca-nossas-criancas', [CriancaController::class, 'index']);
-Route::get('/adote-uma-crianca', [CriancaController::class, 'random'])->name('adocao.random');
+Route::get('/adote-uma-crianca', [CriancaController::class, 'random']);
