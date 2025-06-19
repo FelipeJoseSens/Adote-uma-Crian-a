@@ -10,14 +10,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center">Projeto de Natal</h1>
-        <div class="card mt-4">
-            <div class="card-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
-                <div class="d-flex justify-content-center mt-4">
-                    <a href="/conheca-nossas-criancas" class="btn btn-primary mx-2">Conheça Nossas Crianças</a>
-                    <a href="/adote-uma-crianca" class="btn btn-success mx-2">Adote uma Criança</a>
+    <header class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Natal Mágico</h1>
+                <p class="lead">Faça o Natal de uma criança mais especial</p>
+                <div class="snowflakes">❄ ❄ ❄</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <section class="about-section">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img src="https://images.unsplash.com/photo-1516589091380-5d6015f4ae6b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                         alt="Crianças felizes"
+                         class="img-fluid rounded shadow">
+                </div>
+                <div class="col-md-6">
+                    <h2>Sobre o Projeto</h2>
+                    <p>O Natal Mágico conecta pessoas de bom coração a crianças que merecem um Natal mais feliz. Conheça histórias emocionantes e ajude a realizar sonhos.</p>
+                    <p>Mais de 500 crianças já foram atendidas pelo nosso projeto desde 2015.</p>
                 </div>
             </div>
         </section>
@@ -35,7 +49,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer py-4">
         <div class="container text-center">
             <p>© 2025 Natal Mágico - Todos os direitos reservados</p>
