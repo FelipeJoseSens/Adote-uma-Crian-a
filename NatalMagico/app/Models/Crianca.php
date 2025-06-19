@@ -6,7 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Crianca extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'nome', 'idade', 'descricao', 'foto', 'presente_desejado'
+        'nome',
+        'idade',
+        'descricao',
+        'presente_desejado',
+        'foto',
     ];
 }

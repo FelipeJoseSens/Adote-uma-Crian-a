@@ -18,8 +18,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/conheca-nossas-criancas', [CriancaController::class, 'index']);
-Route::get('/adote-uma-crianca', [CriancaController::class, 'random']);
+Route::get('/criancas/cadastrar', [CriancaController::class, 'create'])->name('criancas.create');
+Route::post('/criancas', [CriancaController::class, 'store'])->name('criancas.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/criancas/create', [CriancaController::class, 'create']);
