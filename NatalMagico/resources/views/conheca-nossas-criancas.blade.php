@@ -1,30 +1,32 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conheça Nossas Crianças</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Conheça Nossas Crianças</h1>
-        <div class="row">
-            @foreach($criancas as $crianca)
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    @if($crianca->foto)
-                    <img src="{{ asset('storage/' . $crianca->foto) }}" class="card-img-top" alt="{{ $crianca->nome }}">
-                    @endif
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $crianca->nome }} ({{ $crianca->idade }} anos)</h5>
-                        <p class="card-text">{{ $crianca->descricao }}</p>
-                        <p class="text-success"><strong>Deseja ganhar:</strong> {{ $crianca->presente_desejado }}</p>
+@extends('layouts.app')
+
+@section('title', 'Conheça Nossas Crianças')
+
+@section('content')
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Conheça Nossas Crianças</h1>
+    <div class="row">
+        @foreach($criancas as $crianca)
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                @if($crianca->foto)
+                <img src="{{ asset('storage/' . $crianca->foto) }}"
+                     class="card-img-top"
+                     style="height: 200px; object-fit: cover;"
+                     alt="{{ $crianca->nome }}">
+                @endif
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ $crianca->nome }} <small class="text-muted">({{ $crianca->idade }} anos)</small></h5>
+                    <p class="card-text flex-grow-1">{{ $crianca->descricao }}</p>
+                    <div class="mt-auto">
+                        <div class="alert alert-success mb-0">
+                            <strong>🎁 Deseja ganhar:</strong> {{ $crianca->presente_desejado }}
+                        </div>
                     </div>
                 </div>
             </div>
-            @endforeach
         </div>
+        @endforeach
     </div>
-</body>
-</html>
+</div>
+@endsection
