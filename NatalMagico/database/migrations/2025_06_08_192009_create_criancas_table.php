@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
        Schema::create('criancas', function (Blueprint $table) {
-    $table->id();
-    $table->string('nome');
-    $table->text('descricao');
-    $table->string('foto')->nullable();
-    $table->string('presente_desejado');
-    $table->timestamps();
-});
+            $table->id();
+            $table->string('nome');
+            $table->integer('idade'); // <-- ADICIONE ESTA LINHA
+            $table->text('descricao');
+            $table->string('foto')->nullable();
+            $table->string('presente_desejado');
+            $table->timestamps();
+        });
     }
 
     /**
