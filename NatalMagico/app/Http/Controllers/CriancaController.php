@@ -16,19 +16,18 @@ class CriancaController extends Controller
     public function random()
     {
         $crianca = Crianca::inRandomOrder()->first();
-        if(!$crianca) {
+        if (!$crianca) {
             return response()->json(['error' => 'Nenhuma criança encontrada'], 404);
         }
         return view('adote-uma-crianca', compact('crianca'));
     }
-
 
     public function create()
     {
         return view('criancas.create');
     }
 
-
+    // Método para salvar a criança
     public function store(Request $request)
     {
         $request->validate([
@@ -36,18 +35,18 @@ class CriancaController extends Controller
             'idade' => 'required|integer|min:0',
             'descricao' => 'required|string',
             'presente_desejado' => 'required|string|max:255',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $dados = $request->all();
+        $data = $request->all();
 
         if ($request->hasFile('foto')) {
             $path = $request->file('foto')->store('criancas', 'public');
-            $dados['foto'] = $path;
+            $data['foto'] = $path;
         }
 
-        Crianca::create($dados);
+        Crianca::create($data);
 
-        return redirect()->route('criancas.create')->with('success', 'Criança cadastrada com sucesso!');
+        return redirect('/conheca-nossas-criancas')->with('success', 'Criança cadastrada com sucesso!');
     }
 }
