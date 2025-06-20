@@ -9,44 +9,26 @@ class CriancaController extends Controller
 {
     public function index()
     {
-        $criancas = Crianca::all();
+        // Alterado para pegar todas, mas você pode filtrar por ativas se preferir
+        // Para o admin ver todas, e o público só as ativas, a lógica pode ser mais complexa.
+        // Por ora, vamos mostrar todas para o admin e só ativas para o público.
+        if (auth()->check()) {
+            $criancas = Crianca::all();
+        } else {
+            $criancas = Crianca::where('is_active', true)->get();
+        }
         return view('conheca-nossas-criancas', ['criancas' => $criancas]);
     }
 
-    public function random()
-    {
-        $crianca = Crianca::inRandomOrder()->first();
-        if (!$crianca) {
-            return response()->json(['error' => 'Nenhuma criança encontrada'], 404);
+   public function random()
+   {
+        // Alterado para sortear apenas entre as crianças ativas
+        $crianca = Crianca::where('is_active', true)->inRandomOrder()->first();
+
+        if(!$crianca) {
+            return view('adote-uma-crianca', ['crianca' => null]);
         }
+
         return view('adote-uma-crianca', compact('crianca'));
-    }
-
-    public function create()
-    {
-        return view('criancas.create');
-    }
-
-    // Método para salvar a criança
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'idade' => 'required|integer|min:0',
-            'descricao' => 'required|string',
-            'presente_desejado' => 'required|string|max:255',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        $data = $request->all();
-
-        if ($request->hasFile('foto')) {
-            $path = $request->file('foto')->store('criancas', 'public');
-            $data['foto'] = $path;
-        }
-
-        Crianca::create($data);
-
-        return redirect('/conheca-nossas-criancas')->with('success', 'Criança cadastrada com sucesso!');
-    }
+   }
 }

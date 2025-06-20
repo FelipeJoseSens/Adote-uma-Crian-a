@@ -15,5 +15,6 @@ class Crianca extends Model
         'descricao',
         'presente_desejado',
         'foto',
+        'is_active', // Adicionado
     ];
 }
