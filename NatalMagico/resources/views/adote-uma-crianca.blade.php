@@ -1,22 +1,44 @@
 @extends('layouts.app')
 
+@section('title', 'Adote uma Criança')
+
 @section('content')
-<div class="container mt-5">
-    <h2 class="text-center mb-4">Adote uma Criança</h2>
-    @if(isset($crianca))
-        <div class="card mx-auto" style="max-width: 400px;">
-            @if($crianca->foto)
-                <img src="{{ $crianca->foto }}" class="card-img-top" alt="Foto de {{ $crianca->nome }}">
-            @endif
-            <div class="card-body">
-                <h5 class="card-title">{{ $crianca->nome }}</h5>
-                <p class="card-text">{{ $crianca->descricao }}</p>
-                <p class="card-text"><strong>Presente desejado:</strong> {{ $crianca->presente_desejado }}</p>
-                <a href="/adote-uma-crianca" class="btn btn-success mt-3">Quero Adotar Outra Criança</a>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h3 class="text-center mb-0">Adote uma Criança</h3>
             </div>
+
+            @if($crianca)
+            <div class="card-body text-center">
+                {{-- O 'alt' da imagem foi melhorado aqui --}}
+                <img src="{{ asset('storage/' . $crianca->foto) }}"
+                     class="img-fluid rounded-circle mb-3"
+                     style="width: 200px; height: 200px; object-fit: cover;"
+                     alt="Foto de {{ $crianca->nome }}">
+
+                <h2>{{ $crianca->nome }}, {{ $crianca->idade }} anos</h2>
+                <p class="lead">{{ $crianca->descricao }}</p>
+
+                <div class="alert alert-success mt-4">
+                    <h4>🎁 Presente Desejado:</h4>
+                    <p class="h5">{{ $crianca->presente_desejado }}</p>
+                </div>
+
+                <a href="/adote-uma-crianca" class="btn btn-primary btn-lg mt-3">
+                    🔄 Sortear Outra Criança
+                </a>
+            </div>
+            @else
+            <div class="card-body text-center">
+                <div class="alert alert-warning">
+                    Nenhuma criança cadastrada no momento.
+                </div>
+                <a href="/" class="btn btn-primary">Voltar</a>
+            </div>
+            @endif
         </div>
-    @else
-        <p class="text-center">Nenhuma criança disponível para adoção no momento.</p>
-    @endif
+    </div>
 </div>
 @endsection

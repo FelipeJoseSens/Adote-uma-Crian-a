@@ -26,7 +26,8 @@
                 <div class="navbar-nav">
                     <a class="nav-link" href="/conheca-nossas-criancas">👧👦 Conheça Nossas Crianças</a>
                     <a class="nav-link" href="/adote-uma-crianca">🎁 Adote uma Criança</a>
-                    <a class="nav-link" href="{{ route('criancas.create') }}">➕ Cadastrar Criança</a>
+                    {{-- Link para cadastrar criança adicionado --}}
+                    <a class="nav-link" href="{{ route('criancas.create') }}">+ Cadastrar Criança</a>
                 </div>
             </div>
         </nav>
