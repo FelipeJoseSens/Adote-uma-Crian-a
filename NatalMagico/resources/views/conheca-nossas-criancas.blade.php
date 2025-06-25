@@ -19,9 +19,27 @@
                     <h5 class="card-title">{{ $crianca->nome }} <small class="text-muted">({{ $crianca->idade }} anos)</small></h5>
                     <p class="card-text flex-grow-1">{{ $crianca->descricao }}</p>
                     <div class="mt-auto">
-                        <div class="alert alert-success mb-0">
+                        <div class="alert alert-success mb-3">
                             <strong>🎁 Deseja ganhar:</strong> {{ $crianca->presente_desejado }}
                         </div>
+
+                        @if(session('is_admin'))
+                        <div class="d-flex justify-content-around">
+                            <a href="{{ route('criancas.edit', $crianca) }}" class="btn btn-sm btn-warning">Alterar</a>
+
+                            <form action="{{ route('criancas.destroy', $crianca) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                            </form>
+
+                            <form action="{{ route('criancas.deactivate', $crianca) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="btn btn-sm btn-secondary">Desativar</button>
+                            </form>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
